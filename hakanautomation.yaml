@@ -1,0 +1,17 @@
+- alias: Håkan
+  trigger:
+    platform: state
+    entity_id: media_player.kok
+  condition:
+    condition: template
+    value_template: '{{ states.media_player.kok.attributes.media_artist == "Håkan
+      Hellström" }}'
+  action:
+  - service: switch.turn_on
+    entity_id: switch.lightbox
+  - service: media_player.media_next_track
+    data:
+      entity_id: media_player.kok
+  - delay: 00:01:00
+  - service: switch.turn_off
+    entity_id: switch.lightbox
